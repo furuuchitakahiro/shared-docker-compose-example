@@ -1,0 +1,22 @@
+version: "3"
+services:
+  slave_service:
+    build: ./slave_service
+    volumes:
+      - ./slave_service:/usr/src/app
+      - master_volume:/usr/src/app/src/master_volume
+    command: sh
+    tty: true
+    stdin_open: true
+
+
+volumes:
+  master_volume:
+    external:
+      name: master_docker-compose_master_volume
+
+
+networks:
+  default:
+    external:
+      name: master_docker-compose_default

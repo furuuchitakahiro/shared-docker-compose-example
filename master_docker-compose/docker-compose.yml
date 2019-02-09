@@ -1,0 +1,18 @@
+version: "3"
+services:
+  master_service:
+    build: ./master_service
+    volumes:
+      - ./master_service:/usr/src/app
+    command: sh
+    tty: true
+    stdin_open: true
+
+
+volumes:
+  master_volume:
+    driver: local
+    driver_opts:
+      device: ${PWD}/master_service/src
+      type: volume
+      o: bind
